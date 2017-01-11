@@ -1,6 +1,6 @@
 # Analyzing the Forum Data with MapReduce:
 
-## Data:
+## 1. Data:
 The data used for this analysis comes from the Udacity course forum posts, and here is a sample content:
 
 > 10.223.157.186 - - [15/Jul/2009:14:58:59 -0700] "GET / HTTP/1.1" 403 202
@@ -22,3 +22,11 @@ The data used for this analysis comes from the Udacity course forum posts, and h
 > 10.223.157.186 - - [15/Jul/2009:15:50:35 -0700] "GET /assets/js/lightbox.js HTTP/1.1" 200 25960
 
 > 10.223.157.186 - - [15/Jul/2009:15:50:36 -0700] "GET /assets/img/search-button.gif HTTP/1.1" 200 168
+
+## Task 1. Find the mean:
+mapper's code
+'''
+def mapper():
+  dsfdsf
+  sdfsd
+'''
