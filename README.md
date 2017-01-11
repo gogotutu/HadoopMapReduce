@@ -14,3 +14,9 @@ Four projects are here:
   . Calculate the highest individual sale for each store
   
   . Calculate the total sales number and the total sales value for all stores.
+
+### Useful Commands:
+. Put a file on to HDFS:
+$hadoop fs -put [filename]
+. Run MapReduce job:
+$hs mapper.py
