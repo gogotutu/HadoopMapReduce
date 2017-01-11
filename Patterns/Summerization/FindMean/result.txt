@@ -1,0 +1,7 @@
+The average sale on Sunday is 250.009331149.	
+The average sale on Monday is 249.738227929.	
+The average sale on Tuesday is 249.851167195.	
+The average sale on Wednesday is 249.872024327.	
+The average sale on Thursday is 250.223089314.	
+The average sale on Friday is 250.084703253.	
+The average sale on Saturday is 249.946443251.	
