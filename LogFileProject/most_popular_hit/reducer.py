@@ -1,0 +1,36 @@
+#!/usr/bin/python
+
+import sys
+
+oldFile = None
+Count = 0
+mostPopular = {}
+
+for line in sys.stdin:
+    data_mapped = line.strip().split("\t")
+    if len(data_mapped) != 2:
+        # Something has gone wrong. Skip this line.
+        continue
+
+    thisFile = data_mapped[0]
+
+    if oldFile and oldFile != thisFile:
+	if len(mostPopular) == 0:
+	    mostPopular[oldFile] = Count
+	elif Count > mostPopular.values()[0]:
+	    mostPopular.popitem()
+	    mostPopular[oldFile] = Count
+	oldFile = thisFile
+	Count = 0
+    
+    oldFile = thisFile
+    Count += 1
+
+if oldFile != None:
+    if len(mostPopular) == 0:
+	mostPopular[oldFile] = Count
+    elif Count > mostPopular.values()[0]:
+	mostPopular.popitem()
+	mostPopular[oldFile] = Count
+
+print "The most popular file is {0}, and the total number of hits is {1}.".format(mostPopular.keys()[0], mostPopular.values()[0])
