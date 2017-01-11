@@ -25,8 +25,8 @@ The data used for this analysis comes from the Udacity course forum posts, and h
 
 ## Task 1. Find the mean:
 mapper's code
-'''
+```
 def mapper():
   dsfdsf
   sdfsd
-'''
+```
