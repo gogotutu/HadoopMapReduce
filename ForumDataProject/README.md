@@ -1,4 +1,4 @@
-# Analyzing the Forum Data with MapReduce:
+# Analyzing the Forum Data with Hadoop/MapReduce:
 
 ## 1. Data:
 The data used for this analysis comes from the Udacity course forum posts, and here is a sample content:
