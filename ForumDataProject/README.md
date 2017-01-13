@@ -23,6 +23,8 @@ The data used for this analysis comes from the Udacity course forum posts, and h
 
 > 10.223.157.186 - - [15/Jul/2009:15:50:36 -0700] "GET /assets/img/search-button.gif HTTP/1.1" 200 168
 
+The format follows the pattern:
+
 ## Task 1. Find the mean:
 mapper's code
 ```
