@@ -24,12 +24,18 @@ $hadoop fs -put [filename]
 
 2. Run MapReduce job:
 
-$hs mapper.py reducer.py input_file output_directory
+```
+$hs mapper.py reducer.py [input_filename] [output_directory]
+```
 
 3. get result:
 
+```
 $hadoop fs -get /output_directory/part-00000 local_filename
+```
 
 4. Test run:
 
-$at testfile | ./mapper.py | sort | ./reducer.py
+```
+$cat testfile | ./mapper.py | sort | ./reducer.py
+```
