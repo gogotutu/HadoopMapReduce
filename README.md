@@ -38,7 +38,15 @@ Four projects are here:
     . Calculate the mean sale for each weekday
  
 4. Forum Data Project:
-  . 
+  
+  . Find the most active time for each student id
+  
+  . Find if there is correlation between question length and answer length
+  
+  . Find the top 10 tags over all forum posts
+  
+  . Explore hidden study groups and interaction between students.
+  
 ### Useful Commands:
 
 1. Put a file on to HDFS:
