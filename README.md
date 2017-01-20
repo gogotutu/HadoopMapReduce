@@ -24,7 +24,7 @@ Four projects are here:
 3. Patterns:
 
   . Filtering Pattern
-
+  
     . Posts with only one sentence
     
     . Top 10 posts
@@ -37,7 +37,7 @@ Four projects are here:
     
     . Calculate the mean sale for each weekday
  
- 4. Forum Data Project:
+4. Forum Data Project:
   . 
 ### Useful Commands:
 
