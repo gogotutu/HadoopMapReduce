@@ -18,7 +18,9 @@ Four projects are here:
 
 1. Put a file on to HDFS:
 
+```
 $hadoop fs -put [filename]
+```
 
 2. Run MapReduce job:
 
