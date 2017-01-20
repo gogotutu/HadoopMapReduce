@@ -14,6 +14,19 @@ Four projects are here:
   
   . Calculate the total sales number and the total sales value for all stores.
 
+2. Log File Project:
+  . Find out the most popular hit
+  
+  . Count the number of hits for each different ip
+  
+  . Count the number of hits for each document
+  
+3. Patterns:
+  . Filtering Pattern
+    . Posts with only one sentence
+    . Top 10 posts
+  . Summerization Pattern
+
 ### Useful Commands:
 
 1. Put a file on to HDFS:
