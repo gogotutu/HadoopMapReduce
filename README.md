@@ -3,7 +3,8 @@
 This repo contains the MapReduce codes for the projects from Udacity Intro to Hadoop and MapReduce course.
 Course url: https://classroom.udacity.com/courses/ud617
 
-Four projects are here:
+
+### Four projects are here:
 
 1. Stores Sales Project:
   . Calculate the total sales for each store
@@ -46,7 +47,8 @@ Four projects are here:
   . Find the top 10 tags over all forum posts
   
   . Explore hidden study groups and interaction between students.
-  
+
+
 ### Useful Commands:
 
 1. Put a file on to HDFS:
