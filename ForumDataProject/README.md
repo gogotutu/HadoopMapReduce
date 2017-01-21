@@ -25,31 +25,105 @@ The data used for this analysis comes from the Udacity course forum posts, and h
 
 The format follows the pattern:
 
-## Task 1. Find the mean:
-mapper's code
+## Task 1. Find the most active hour of a student:
+
+In this exercise your task is to find for each student what is the hour during which the student has posted the most posts. If there is a tie: there are multiple hours during which a student has posted a maximum number of posts, please print the student-hour pairs on separate lines.
+
+mapper's code:
+
 ```
-def mapper():
-  dsfdsf
-  sdfsd
+#!/usr/bin/python
+
+import sys
+import csv
+from datetime import datetime
+
+reader = csv.reader(sys.stdin, delimiter = '\t')
+
+for line in reader:
+    if len(line) != 19:
+	continue
+    if line[0] == 'id':
+	continue
+    author_id = line[3]
+    post_time = line[8]
+    hour = datetime.strptime(post_time[:-2], "%Y-%m-%d %H:%M:%S.%f+").time().hour
+    print author_id, '\t', hour
 ```
+
+reducer's code:
+
+```
+#!/usr/bin/python
+
+active_hours = [0] * 24
+oldStudent = None
+
+import sys
+#from datetime import datetime
+
+for line in sys.stdin:
+    data = line.strip().split("\t")
+    if len(data) != 2:
+	continue
+    thisStudent = data[0]
+    post_time = int(data[1])
+    
+    if oldStudent and oldStudent != thisStudent:	
+	for i in range(24):
+	    if active_hours[i] == max(active_hours):
+		print oldStudent, '\t', i+1
+	oldStudent = thisStudent
+	active_hours = [0] * 24
+    
+    oldStudent = thisStudent
+    index = post_time - 1
+    active_hours[index] += 1
+
+if oldStudent != None:
+    for i in range(24):
+	if active_hours[i] == max(active_hours):
+	    print oldStudent, '\t', i+1
+```
+
 Result:
+
 >100000000  	9
+
 >100000002  	4
+
 >100000003  	5
+
 >100000005  	1
+
 >100000007  	3
+
 >100000008  	16
+
 >100000009  	20
+
 >100000011  	3
+
 >100000014  	4
+
 >100000016  	23
+
 >100000017  	5
+
 >100000017  	22
+
 >100000018  	2
+
 >100000018  	3
+
 >100000018  	11
+
 >100000018  	16
+
 >100000018  	19
+
 >100000019  	5
+
 >100000020  	5
+
 >100000022  	17
