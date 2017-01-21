@@ -226,3 +226,101 @@ Result sample:
 >66193 	60 	208.0
 
 >7185 	86 	0
+
+## Task 3. Top tags used in posts
+
+Write a mapreduce program that would output Top 10 tags, ordered by the number of questions they appear in. Code should not use a data structure (e.g. a dictionary) in the reducer that stores a large number of keys. Remember that Hadoop already sorts the mapper output based on key, such that key-value pairs with the same key will appear consecutively as input to the reducer. Make sure you take advantage of this ordering when you write your reducer code.
+
+mapper's code:
+
+```
+#!/usr/bin/python
+
+import sys
+import csv
+from datetime import datetime
+
+reader = csv.reader(sys.stdin, delimiter = '\t')
+
+for line in reader:
+    if len(line) != 19:
+	continue
+    if line[0] == 'id':
+	continue
+    tags = line[2].split()
+    post_type = line[5].strip()
+
+    if post_type == "question":
+	for tag in tags:
+	    print tag, '\t', 1
+```
+
+reducer's code:
+
+```
+#!/usr/bin/python
+
+oldTag = None
+Count = 0
+topTag = {}
+
+import sys
+
+for line in sys.stdin:
+    data = line.strip().split("\t")
+    if len(data) != 2:
+	continue
+    
+    thisTag = data[0]
+    if oldTag and oldTag != thisTag:
+	if len(topTag) < 10:
+	    topTag[oldTag] = Count
+	else:
+	    least_count = min(topTag.values())
+	    if Count > least_count:
+		for tag in topTag.keys():
+		    if topTag[tag] == least_count:
+			del topTag[tag]
+			continue
+		topTag[oldTag] = Count
+
+	oldTag = thisTag
+	Count = 0
+    
+    oldTag = thisTag
+    Count += 1
+
+if oldTag != None:
+    least_count = min(topTag.values())
+    if Count > least_count:
+	for tag in topTag.keys():
+	    if topTag[tag] == least_count:
+		del topTag[tag]
+		continue
+	topTag[oldTag] = Count
+
+for tag in sorted(topTag, key = topTag.get, reverse = True):
+    print tag, '\t', topTag[tag]
+```
+
+Results:
+
+>cs101  	8
+
+>cs253  	5
+
+>discussion  	5
+
+>welcome  	3
+
+>issues  	3
+
+>meta  	2
+
+>jobs  	2
+
+>homework  	2
+
+>lessons  	2
+
+>nationalities  	2
