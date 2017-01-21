@@ -324,3 +324,88 @@ Results:
 >lessons  	2
 
 >nationalities  	2
+
+## Task 4. Discover study groups
+As the first step for this analysis we have been tasked with writing a mapreduce program that for each forum thread (that is a question node with all it's answers and comments) would give us a list of students that have posted there - either asked the question, answered a question or added a comment. If a student posted to that thread several times, they should be added to that list several times as well, to indicate intensity of communication.
+
+mapper's code:
+
+```
+#!/usr/bin/python
+
+import sys
+import csv
+from datetime import datetime
+
+reader = csv.reader(sys.stdin, delimiter = '\t')
+
+for line in reader:
+    if len(line) != 19:
+	continue
+    if line[0] == 'id':
+	continue
+    post_id = line[0].strip()
+    student_id = line[3].strip()
+    post_type = line[5].strip()
+    parent_id = line[6].strip()
+
+    if post_type == "question":
+	print post_id, '\t', student_id
+    else:
+	print parent_id, '\t', student_id
+```
+
+reducer's code:
+
+```
+#!/usr/bin/python
+
+oldPost = None
+StudentList = []
+
+import sys
+
+for line in sys.stdin:
+    data = line.strip().split("\t")
+    if len(data) != 2:
+	continue
+    
+    thisPost, thisStudent = data
+    if oldPost and thisPost != oldPost:
+	print oldPost, '\t', StudentList
+	oldPost = thisPost
+	StudentList = []
+
+    oldPost = thisPost
+    if thisStudent not in StudentList:
+	StudentList.append(thisStudent)
+
+if oldPost != None:
+    print oldPost, '\t', StudentList
+```
+
+results:
+
+>111  	['100000066']
+
+>15084  	['100004819']
+
+>2  	['100000005']
+
+>262  	['100004819']
+
+>26454  	['100003192']
+
+>3778  	['100000066', '100008254']
+
+>6011204  	['100020526', '100010128', '100071170']
+
+>6011936  	['100019875', '100071170', '100004819']
+
+>6012754  	['100012200', '100004819']
+
+>6015491  	['100004467', '100071170', '100005156']
+
+>66193  	['100002460', '100007808', '100004467', '100071170']
+
+>7185  	['100003268']
